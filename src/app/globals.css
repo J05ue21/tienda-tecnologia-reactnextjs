@@ -1,4 +1,4 @@
-/* --- Estilos Base --- */
+
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -6,7 +6,7 @@ body {
   color: #333;
 }
 
-/* --- Componente: Login --- */
+/* para el Login*/
 .login-container {
   display: flex;
   justify-content: center;
@@ -54,7 +54,7 @@ body {
 
 .btn-login:hover { background-color: #0051bb; }
 
-/* --- Componente: Header y Carrito --- */
+/* para el Header y Carrito*/
 .container-navbar {
     display: flex;
     justify-content: space-between;
@@ -122,7 +122,7 @@ body {
 .btn-checkout { background-color: #00ca4e; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; width: 100%; margin-bottom: 10px; }
 .btn-clear-all { background-color: #333; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; width: 100%; }
 
-/* --- Componente: ProductList (Cuadrícula de productos) --- */
+/* para la organizacion de los productos en ProductList*/
 .container-items {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -137,7 +137,7 @@ body {
     overflow: hidden;
     transition: transform 0.3s;
 }
-
+/*al paasr el cursor y ver el efecto de zoom*/
 .item:hover { transform: translateY(-5px); }
 
 .item img {
@@ -160,7 +160,7 @@ body {
     width: 100%;
 }
 
-/* --- Componente: Factura (Invoice) --- */
+/* estilo para la Factura (Invoice) */
 .invoice-container { display: flex; justify-content: center; padding: 50px; background-color: #e3e3e3; min-height: 100vh; }
 .invoice-card { background: white; padding: 40px; width: 100%; max-width: 700px; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-top: 8px solid #0070f3; }
 .invoice-header { text-align: center; margin-bottom: 30px; }
