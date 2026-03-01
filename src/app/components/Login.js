@@ -12,7 +12,7 @@ const Login = ({ onLogin }) => {
     return (
         <div className="login-container">
             <form onSubmit={handleSubmit} className="login-card">
-                <h2>Tienda Tech - Login</h2>
+                <h2>CompuTechStoreSV - Login</h2>
                 
                 <div className="input-group">
                     <label>Usuario</label>

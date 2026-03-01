@@ -35,8 +35,7 @@ export default function Home()
     setActiveUser(null);
   };
 
-  return
-  (
+  return (
     <main>
       
       {activeUser ? (
