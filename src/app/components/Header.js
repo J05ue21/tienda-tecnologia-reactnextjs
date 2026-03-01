@@ -8,17 +8,20 @@ export const Header = ({
     countProducts,
     setCountProducts,
     setTotal,
-    user,onLogout
+    user,
+    onLogout,
+    setShowInvoice,
+
 }) => {
         const [active, setActive] = useState(false);
 
         //donde se confirama antes de eliminar un articulo del carrito
         const onDeleteProduct = product => {
-            const confirmDelete = window.confirm('¿Seguro que desear quitar ${product.title} del carrito?');
+            const confirmDelete = window.confirm(`¿Seguro que deseas quitar ${product.title}?`);
 
             if(confirmDelete)
             {
-                const resuts = allProducts.filter(item =>item.id !== product.id);
+                const results = allProducts.filter(item =>item.id !== product.id);
                 setTotal(total - product.price * product.quantity);
                 setCountProducts(countProducts - product.quantity);
                 setAllProducts(results);
@@ -34,10 +37,25 @@ export const Header = ({
                 //si se decidio vaciar todo el carrito, cambiamos el estado del carrito
                 //vaciando todo su contenido 
                 setAllProducts([]);
-                setTotal([]);
-                setCountProducts([]);
+                setTotal(0);
+                setCountProducts(0);
             }
         };
+
+        // se añade la funcionalidad del boton Finalizar Compra del Header
+        const onCheckout = () => {
+        if (allProducts.length === 0) 
+        {
+            alert("El carrito está vacío");
+            return;
+        }
+        
+        const confirmCheckout = window.confirm("¿Deseas finalizar la compra y mostrar la factura?");
+        if (confirmCheckout) 
+        {
+            setShowInvoice(true); // si (window.confirm) == true, entonces muestra la factura
+        }
+    };
 
         return (
             <header>
@@ -54,6 +72,8 @@ export const Header = ({
                                 <span id="contador-productos">{countProducts}</span>
                             </div>
                         </div>
+                        {/* condicional if con operador ternario para el estado del carrito
+                        ? (true) con articulos   : (false) sin articulos */}
                         <div className={`container-cart-products ${active ? '' : 'hidden-cart'}`}>
                             {allProducts.length ? (
                                 <>
@@ -78,13 +98,19 @@ export const Header = ({
 								</div>
 
 								<div className="cart-total">
-									<h3>Total:</h3>
-									<span className="total-pagar">${total}</span>
-								</div>
+                                    <h3>Total:</h3>
+                                    <span className="total-pagar">${total}</span>
+                                </div>
 
-								<button className="btn-clear-all" onClick={onCleanCart}>
-									Vaciar Carrito
-								</button>
+                                {/*botones de Finalizar compra y vaciar carrito*/}
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                                    <button className="btn-checkout" onClick={onCheckout}>
+                                        Finalizar Compra
+                                    </button>
+                                    <button className="btn-clear-all" onClick={onClearCart}>
+                                        Vaciar Carrito
+                                    </button>
+                                </div>
 							</>
 						) : (
 							<p className="cart-empty">El carrito está vacío</p>
