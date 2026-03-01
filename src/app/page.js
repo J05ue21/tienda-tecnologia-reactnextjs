@@ -1,66 +1,72 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client';
 
-export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+import { useState } from 'react'; //estados del usuarios (logueado) al navegar
+import { users } from './data'; // fichero que contiene usuarios de prueba de login
+import Login from './components/Login'; // componente Login
+import { Header } from './components/Header'; // componente Header
+import { ProductList } from './components/ProductList'; //Componente ProducList para listar articulos
+
+export default function Home()
+{
+  // estados del carrito de compras del usuario actual
+  const [allProducts, setAllProducts] = useState([]);
+  const [total, setTotal]=useState(0);
+  const [countProducts, setCountProducts]=useState(0);
+
+  //estaso del login, si es 'null' es porque aun no ha iniciado sedion
+  const [activeUser, setActiveUser]=useState(null);
+
+  //validando el usuario que intenta hacer login
+  const handleLogin=(username, password)=>{
+    const found = users.find
+    (
+      (u)=>u.username === username && u.password === password
+    );
+
+    if(found){
+      setActiveUser(found);
+    }
+    else{
+      alert('El Usuario o contraseña incorrectos, Intente nuevamente')
+    }
+  };
+
+  const handleLogout = ()=>{
+    setActiveUser(null);
+  };
+
+  return
+  (
+    <main>
+      
+      {activeUser ? (
+        //utilizando el operador ternario ? si es verdadero : si es falso
+        //si activeUser es true, se muestras Header y ProducList...
+        <>
+          <Header
+            allProducts={allProducts}
+            setAllProducts={setAllProducts}
+            total={total}
+            setTotal={setTotal}
+            countProducts={countProducts}
+            setCountProducts={setCountProducts}
+            user={activeUser}
+            onLogout={handleLogout}
+          />
+          <ProductList
+            allProducts={allProducts}
+            setAllProducts={setAllProducts}
+            total={total}
+            setTotal={setTotal}
+            countProducts={countProducts}
+            setCountProducts={setCountProducts}
+          />
+        </>
+      ) : (
+        // si activeUser es FALSE, se mostrara el componente Login ya que no hay usuario logueado aun
+        <Login onLogin={handleLogin}
         />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.js file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      )}
+    </main>
   );
 }
