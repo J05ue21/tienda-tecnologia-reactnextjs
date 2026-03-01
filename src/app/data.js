@@ -122,7 +122,7 @@ export const data = [
         id: 18,
         title: 'Gabinete NZXT H9 Flow White',
         price: 160,
-        urlImage: 'hhttps://m.media-amazon.com/images/I/61Yr06ThzYL._AC_SL1000_.jpg',
+        urlImage: 'https://m.media-amazon.com/images/I/61Yr06ThzYL._AC_SL1000_.jpg',
         quantity: 1
     },
     {
@@ -136,7 +136,7 @@ export const data = [
         id: 20,
         title: 'Tarjeta Gráfica RTX 4070 Ti Super',
         price: 799,
-        urlImage: 'hhttps://m.media-amazon.com/images/I/81iw1lPCN5L._AC_SL1500_.jpg',
+        urlImage: 'https://m.media-amazon.com/images/I/81iw1lPCN5L._AC_SL1500_.jpg',
         quantity: 1
     },
     {
@@ -157,7 +157,7 @@ export const data = [
         id: 23,
         title: 'iPad Pro M4 11"',
         price: 1999,
-        urlImage: 'https://m.media-amazon.com/images/G/01/apparel/rcxgs/tile._CB483369110_.gif',
+        urlImage: 'https://m.media-amazon.com/images/I/714-7INRdwL._AC_SL1500_.jpg',
         quantity: 1
     },
     {
